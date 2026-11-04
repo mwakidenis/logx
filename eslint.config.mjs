@@ -7,6 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export default tseslint.config({
   files: ["src/**/*.ts", "tests/**/*.ts"],
   ignores: [
+    "coverage/**",
     "dist/**",
     "benchmarks/**",
     "examples/**",

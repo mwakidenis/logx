@@ -1,6 +1,6 @@
 {
   "name": "@mwakidenis/logx",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The Modern JavaScript Utility Engine - a modular, zero-dependency utility library for JavaScript and TypeScript",
   "author": "Mwaki Denis",
   "license": "MIT",
@@ -180,7 +180,7 @@
     "clean": "rm -rf dist .turbo node_modules/.cache",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint . --ext .ts,.js",
+    "lint": "eslint src tests --ext .ts,.js",
     "lint:fix": "eslint . --ext .ts,.js --fix",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\" \"*.{js,json,md,ts}\"",
