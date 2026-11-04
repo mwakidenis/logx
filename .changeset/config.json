@@ -1,0 +1,10 @@
+{
+  "$schema": "https://changesets.github.io/schema",
+  "changelog": "@changesets/changelog-github",
+  "access": "public",
+  "baseBranch": "main",
+  "commit": "chore: release",
+  "fixed": [],
+  "linked": [],
+  "fix": {}
+}

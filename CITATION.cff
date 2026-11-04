@@ -1,0 +1,18 @@
+# CITATION.cff
+
+cff-version: 1.2.0
+message: "If you use LOGX, please cite it as below."
+authors:
+  - family-names: "Denis"
+    given-names: "Mwaki"
+title: "LOGX - The Modern JavaScript Utility Engine"
+version: 0.1.0
+date-released: 2026-11-04
+url: "https://github.com/mwakidenis/logx"
+license: MIT
+repository-code: "https://github.com/mwakidenis/logx"
+keywords:
+  - javascript
+  - typescript
+  - utilities
+  - logx

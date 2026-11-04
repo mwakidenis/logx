@@ -1,0 +1,36 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# builds
+dist/
+dist-types/
+
+# caches
+.turbo/
+node_modules/.cache/
+*.tsbuildinfo
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# coverage
+coverage/
+*.lcov
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+~$
+
+# OS
+.DS_Store
+Thumbs.db
+
+# changesets build artifacts
+.changeset/.build

@@ -1,0 +1,203 @@
+{
+  "name": "@mwakidenis/logx",
+  "version": "0.1.0",
+  "description": "The Modern JavaScript Utility Engine - a modular, zero-dependency utility library for JavaScript and TypeScript",
+  "author": "Mwaki Denis",
+  "license": "MIT",
+  "homepage": "https://github.com/mwakidenis/logx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mwakidenis/logx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mwakidenis/logx/issues"
+  },
+  "keywords": [
+    "utilities",
+    "javascript",
+    "typescript",
+    "logx",
+    "helper",
+    "array",
+    "object",
+    "string",
+    "math",
+    "date",
+    "validation",
+    "async"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./array": {
+      "import": {
+        "types": "./dist/esm/array/index.d.ts",
+        "default": "./dist/esm/array/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/array/index.d.cts",
+        "default": "./dist/cjs/array/index.js"
+      }
+    },
+    "./object": {
+      "import": {
+        "types": "./dist/esm/object/index.d.ts",
+        "default": "./dist/esm/object/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/object/index.d.cts",
+        "default": "./dist/cjs/object/index.js"
+      }
+    },
+    "./string": {
+      "import": {
+        "types": "./dist/esm/string/index.d.ts",
+        "default": "./dist/esm/string/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/string/index.d.cts",
+        "default": "./dist/cjs/string/index.js"
+      }
+    },
+    "./number": {
+      "import": {
+        "types": "./dist/esm/number/index.d.ts",
+        "default": "./dist/esm/number/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/number/index.d.cts",
+        "default": "./dist/cjs/number/index.js"
+      }
+    },
+    "./math": {
+      "import": {
+        "types": "./dist/esm/math/index.d.ts",
+        "default": "./dist/esm/math/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/math/index.d.cts",
+        "default": "./dist/cjs/math/index.js"
+      }
+    },
+    "./function": {
+      "import": {
+        "types": "./dist/esm/function/index.d.ts",
+        "default": "./dist/esm/function/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/function/index.d.cts",
+        "default": "./dist/cjs/function/index.js"
+      }
+    },
+    "./collection": {
+      "import": {
+        "types": "./dist/esm/collection/index.d.ts",
+        "default": "./dist/esm/collection/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/collection/index.d.cts",
+        "default": "./dist/cjs/collection/index.js"
+      }
+    },
+    "./date": {
+      "import": {
+        "types": "./dist/esm/date/index.d.ts",
+        "default": "./dist/esm/date/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/date/index.d.cts",
+        "default": "./dist/cjs/date/index.js"
+      }
+    },
+    "./validation": {
+      "import": {
+        "types": "./dist/esm/validation/index.d.ts",
+        "default": "./dist/esm/validation/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/validation/index.d.cts",
+        "default": "./dist/cjs/validation/index.js"
+      }
+    },
+    "./async": {
+      "import": {
+        "types": "./dist/esm/async/index.d.ts",
+        "default": "./dist/esm/async/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/async/index.d.cts",
+        "default": "./dist/cjs/async/index.js"
+      }
+    },
+    "./browser": {
+      "import": {
+        "types": "./dist/esm/browser/index.d.ts",
+        "default": "./dist/esm/browser/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/browser/index.d.cts",
+        "default": "./dist/cjs/browser/index.js"
+      }
+    },
+    "./security": {
+      "import": {
+        "types": "./dist/esm/security/index.d.ts",
+        "default": "./dist/esm/security/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/security/index.d.cts",
+        "default": "./dist/cjs/security/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist .turbo node_modules/.cache",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .ts,.js",
+    "lint:fix": "eslint . --ext .ts,.js --fix",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\" \"*.{js,json,md,ts}\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\" \"*.{js,json,md,ts}\"",
+    "docs": "typedoc",
+    "benchmark": "node benchmarks/index.js",
+    "pack:check": "npm pack --dry-run"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@typescript-eslint/eslint-plugin": "^8.72.1",
+    "@typescript-eslint/parser": "^8.72.1",
+    "@vitest/coverage-v8": "^4.1.12",
+    "eslint": "^9.39.5",
+    "prettier": "^3.9.10",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^4.1.12"
+  }
+}
