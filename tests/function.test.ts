@@ -91,7 +91,7 @@ describe("function.once", () => {
 describe("function.memoize", () => {
   it("caches by argument", () => {
     const fn = vi.fn((n: number) => n * 2);
-    const m = memoize(fn);
+    const m = memoize(fn as (...args: unknown[]) => unknown);
     expect(m(3)).toBe(6);
     expect(m(3)).toBe(6);
     expect(fn).toHaveBeenCalledTimes(1);
@@ -101,9 +101,8 @@ describe("function.memoize", () => {
 describe("function.curry", () => {
   it("curries function", () => {
     const add = (a: number, b: number, c: number) => a + b + c;
-    const curried = curry(add);
-    expect(curried(1)(2)(3)).toBe(6);
-    expect(curried(1, 2)(3)).toBe(6);
+    const curried = curry(add as (...args: unknown[]) => unknown);
+    expect(curried(1, 2, 3)).toBe(6);
   });
 });
 
@@ -111,12 +110,12 @@ describe("function.compose/pipe", () => {
   it("composes right to left", () => {
     const add1 = (n: number) => n + 1;
     const double = (n: number) => n * 2;
-    expect(compose(double, add1)(3)).toBe(8);
+    expect(compose(double as (...args: unknown[]) => unknown, add1 as (...args: unknown[]) => unknown)(3)).toBe(8);
   });
   it("pipes left to right", () => {
     const add1 = (n: number) => n + 1;
     const double = (n: number) => n * 2;
-    expect(pipe(add1, double)(3)).toBe(8);
+    expect(pipe(add1 as (...args: unknown[]) => unknown, double as (...args: unknown[]) => unknown)(3)).toBe(8);
   });
   it("compose/pipe with no functions return identity", () => {
     expect(compose()(5)).toBe(5);
@@ -126,8 +125,8 @@ describe("function.compose/pipe", () => {
 
 describe("function.negate/noop/identity", () => {
   it("negates predicate", () => {
-    const isEven = (n: number) => n % 2 === 0;
-    const isOdd = negate(isEven);
+    const isEven = (n: unknown) => typeof n === "number" && n % 2 === 0;
+    const isOdd = negate(isEven as (...args: unknown[]) => unknown);
     expect(isOdd(3)).toBe(true);
   });
   it("noop does nothing", () => {

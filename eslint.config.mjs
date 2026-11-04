@@ -5,7 +5,16 @@ import tseslint from "typescript-eslint";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default tseslint.config({
-  files: ["**/*.ts"],
+  files: ["src/**/*.ts", "tests/**/*.ts"],
+  ignores: [
+    "dist/**",
+    "benchmarks/**",
+    "examples/**",
+    "scripts/**",
+    "docs/**",
+    "node_modules/**",
+    "*.config.*",
+  ],
   extends: [
     ...tseslint.configs.recommendedTypeChecked,
   ],

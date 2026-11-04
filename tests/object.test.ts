@@ -23,7 +23,7 @@ describe("object.clone", () => {
 describe("object.deepClone", () => {
   it("deep clones nested objects", () => {
     const src = { a: { b: [1, 2] } };
-    const out = deepClone(src);
+    const out = deepClone(src) as { a: { b: number[] } };
     expect(out).toEqual(src);
     expect(out).not.toBe(src);
     expect(out.a).not.toBe(src.a);
@@ -34,17 +34,17 @@ describe("object.deepClone", () => {
     expect(deepClone(d)).not.toBe(d);
   });
   it("handles circular references", () => {
-    const src: any = { a: 1 };
+    const src = { a: 1 } as Record<string, unknown>;
     src.self = src;
-    const out = deepClone(src);
+    const out = deepClone(src) as Record<string, unknown>;
     expect(out.self).toBe(out);
   });
   it("handles arrays and Maps/Sets", () => {
     expect(deepClone([1, [2]])).toEqual([1, [2]]);
     const m = new Map([["a", 1]]);
-    expect(deepClone(m).get("a")).toBe(1);
+    expect((deepClone(m) as Map<string, number>).get("a")).toBe(1);
     const s = new Set([1, 2]);
-    expect(deepClone(s).has(1)).toBe(true);
+    expect((deepClone(s) as Set<number>).has(1)).toBe(true);
   });
 });
 
@@ -81,17 +81,17 @@ describe("object.has", () => {
 
 describe("object.set", () => {
   it("sets nested value creating intermediate objects", () => {
-    const obj: any = {};
+    const obj: Record<string, unknown> = {};
     set(obj, "a.b.c", 5);
-    expect(obj.a.b.c).toBe(5);
+    expect(obj.a).toEqual({ b: { c: 5 } });
   });
   it("sets array index path", () => {
-    const obj: any = { arr: [1, 2] };
+    const obj: Record<string, unknown> = { arr: [1, 2] };
     set(obj, "arr.1", 99);
-    expect(obj.arr[1]).toBe(99);
+    expect((obj.arr as unknown[])[1]).toBe(99);
   });
   it("returns mutated object", () => {
-    const obj: any = { a: 1 };
+    const obj: Record<string, unknown> = { a: 1 };
     const result = set(obj, "a", 2);
     expect(result).toBe(obj);
     expect(obj.a).toBe(2);
@@ -104,7 +104,8 @@ describe("object.pick", () => {
     expect(pick(obj, ["a", "c"])).toEqual({ a: 1, c: 3 });
   });
   it("ignores missing keys", () => {
-    expect(pick({ a: 1 }, ["b"])).toEqual({});
+    const obj: Record<string, number> = { a: 1 };
+    expect(pick(obj, ["b"])).toEqual({});
   });
 });
 
@@ -126,9 +127,9 @@ describe("object.merge", () => {
     expect(merge({ a: 1 }, null, undefined, [1, 2])).toEqual({ a: 1 });
   });
   it("does not allow prototype keys", () => {
-    const obj: any = {};
-    merge(obj, JSON.parse('{"__proto__": {"polluted": true}}'));
-    expect(({} as any).polluted).toBeUndefined();
+    const obj: Record<string, unknown> = {};
+    merge(obj, JSON.parse('{"__proto__": {"polluted": true}}') as object);
+    expect(({} as Record<string, unknown>).polluted).toBeUndefined();
   });
 });
 

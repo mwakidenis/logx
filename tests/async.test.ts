@@ -27,6 +27,7 @@ describe("async.retry", () => {
     let calls = 0;
     const fn = async () => {
       calls += 1;
+      await Promise.resolve();
       if (calls < 3) throw new Error("fail");
       return "ok";
     };
@@ -35,6 +36,7 @@ describe("async.retry", () => {
   });
   it("throws after exhausting retries", async () => {
     const fn = async () => {
+      await Promise.resolve();
       throw new Error("always fail");
     };
     await expect(retry(fn, { retries: 2, delay: 0 })).rejects.toThrow("always fail");
@@ -49,18 +51,15 @@ describe("async.timeout/withTimeout", () => {
     vi.restoreAllMocks();
   });
   it("rejects when promise exceeds timeout", async () => {
-    let resolve!: (v: string) => void;
-    const p = new Promise<string>((r) => { resolve = r; });
+    const p = new Promise<string>(() => { });
     const promise = timeout(p, { timeout: 50 });
     vi.advanceTimersByTime(50);
     await expect(promise).rejects.toThrow("Operation timed out");
   });
   it("resolves when within timeout", async () => {
-    let resolve!: (v: string) => void;
-    const p = new Promise<string>((r) => { resolve = r; });
+    const p = new Promise<string>((r) => setTimeout(() => r("done"), 0));
     const promise = timeout(p, { timeout: 100 });
     vi.advanceTimersByTime(10);
-    resolve("done");
     await expect(promise).resolves.toBe("done");
   });
   it("withTimeout rejects on delay", async () => {
@@ -77,8 +76,7 @@ describe("async.timeout/withTimeout", () => {
   });
 
   it("timeout accepts custom error", async () => {
-    let resolve!: (v: string) => void;
-    const p = new Promise<string>((r) => { resolve = r; });
+    const p = new Promise<string>(() => { });
     const custom = new Error("custom timeout");
     const promise = timeout(p, { timeout: 50, error: custom });
     vi.advanceTimersByTime(50);
