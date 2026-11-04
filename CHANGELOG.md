@@ -4,6 +4,17 @@ All notable changes to LOGX will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and LOGX adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] - 2026-11-04
+
+### Added
+
+- Improved README layout with badges, details sections, and centered formatting
+- GitHub Packages publishing configuration
+
+### Fixed
+
+- CI workflow stability
+
 ## [0.1.0] - 2026-11-04
 
 ### Added
